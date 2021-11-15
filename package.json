@@ -1,0 +1,77 @@
+{
+	"name": "rflogger",
+	"displayName": "RFLogger",
+	"description": "",
+	"publisher": "imbus",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.62.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:robotframework"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+            {
+                "id": "robotframework",
+                "aliases": [
+                    "Robot Framework",
+                    "robotframework"
+                ],
+                "extensions": [
+                    ".robot",
+                    ".resource"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "rf-log",
+                "mimetypes": [
+                    "text/x-code-output"
+                ]
+            }
+        ],
+        "grammars": [
+            {
+                "language": "robotframework",
+                "scopeName": "source.robot",
+                "path": "./syntaxes/robotframework.tmLanguage.json"
+            },
+            {
+                "language": "rf-log",
+                "scopeName": "code.output",
+                "path": "./syntaxes/rfLog.tmLanguage.json"
+            }
+        ]
+		
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.62.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.1",
+		"eslint": "^7.32.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.1",
+		"typescript": "^4.4.3",
+		"@vscode/test-electron": "^1.6.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mardukbp/vscode-rflogger.git"
+	}
+}
