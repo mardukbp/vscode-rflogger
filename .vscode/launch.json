@@ -29,6 +29,13 @@
 				"${workspaceFolder}/out/test/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
-		}
+		},
+		{
+            "type": "robotframework-lsp",
+            "name": "Robot Framework: Launch template",
+            "request": "launch",
+            "terminal": "integrated",
+            "args": ["--listener", "RFLogger"]
+        }
 	]
 }
