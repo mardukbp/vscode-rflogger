@@ -11,7 +11,7 @@ class RFLogger:
         self._send(None, "clear")
 
     def _log_message(self, message):   
-        self._send(f"{message['level']} {message['message']}", "log")
+        self._send(f"{message['level']} {message['message']}".encode('utf-8'), "log")
     
     def _send(self, body, endpoint):
         requests.post(self.LISTENER_SERVER + endpoint,
