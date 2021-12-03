@@ -4,10 +4,17 @@ ROBOT_LISTENER_API_VERSION = 2
 LISTENER_SERVER = "http://localhost:5696/"
 
 def start_suite(name, attributes):
-    send(None, "clear")
+    send('clear', None)
+
+def start_keyword(name, attributes):
+    type = attributes['type']
+    status = attributes['status']
+
+    if type == 'KEYWORD' and not status == 'NOT RUN':
+        send('log', f"Keyword: {name}")
 
 def log_message(message):   
-    send(f"{message['timestamp']} : {message['level']} : {message['message']}".encode('utf-8'), "log")
+    send('log', f"{message['level']} : {message['message']}")
 
-def send(body, endpoint):
-    requests.post(LISTENER_SERVER + endpoint, data = body)
+def send(endpoint, body):
+    requests.post(LISTENER_SERVER + endpoint, data = body.encode('utf-8') if body else body)
